@@ -33,6 +33,6 @@
     "eslint-plugin-prefer-arrow": "^1.2.3",
     "eslint-plugin-react": "^7.29.4",
     "prettier": "^2.6.0",
-    "tap": "^15.1.6"
+    "tap": "^16.0.0"
   }
 }
