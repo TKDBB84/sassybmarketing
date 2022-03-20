@@ -1,35 +1,30 @@
 $(function () {
-
   "use strict"
 
   //===== Prealoder
 
-  $(window).on('load', function (event) {
-    $('.preloader').delay(500).fadeOut(500)
+  $(window).on("load", function () {
+    $(".preloader").delay(500).fadeOut(500)
   })
-
 
   //===== Mobile Menu
-
-  $(".navbar-toggler").on('click', function () {
-    $(this).toggleClass('active')
+  $(".navbar-toggler").on("click", function () {
+    $(this).toggleClass("active")
   })
 
-  $(".navbar-nav a").on('click', function () {
-    $(".navbar-toggler").removeClass('active')
+  $(".navbar-nav a").on("click", function () {
+    $(".navbar-toggler").removeClass("active")
   })
-
 
   //===== close navbar-collapse when a  clicked
 
-  $(".navbar-nav a").on('click', function () {
+  $(".navbar-nav a").on("click", function () {
     $(".navbar-collapse").removeClass("show")
   })
 
-
   //===== Sticky
 
-  $(window).on('scroll', function (event) {
+  $(window).on("scroll", function () {
     var scroll = $(window).scrollTop()
     if (scroll < 10) {
       $(".navigation-bar").removeClass("sticky")
@@ -38,30 +33,26 @@ $(function () {
     }
   })
 
-
   //===== Section Menu Active
 
-  var scrollLink = $('.page-scroll')
+  var scrollLink = $(".page-scroll")
   // Active link switching
   $(window).scroll(function () {
     var scrollbarLocation = $(this).scrollTop()
 
     scrollLink.each(function () {
-
       var sectionOffset = $(this.hash).offset().top - 90
 
       if (sectionOffset <= scrollbarLocation) {
-        $(this).parent().addClass('active')
-        $(this).parent().siblings().removeClass('active')
+        $(this).parent().addClass("active")
+        $(this).parent().siblings().removeClass("active")
       }
     })
   })
 
-
   //===== wow
 
   new WOW().init()
-
 
   //===== AOS
 
@@ -69,10 +60,9 @@ $(function () {
     duration: 800,
   })
 
-
   //===== Slick project
 
-  $('.project-active').slick({
+  $(".project-active").slick({
     dots: true,
     infinite: true,
     speed: 800,
@@ -105,12 +95,11 @@ $(function () {
         },
       },
     ],
-  })
-
+  });
 
   //===== Slick Testimonial
 
-  $('.testimonial-active').slick({
+  $(".testimonial-active").slick({
     dots: true,
     infinite: true,
     speed: 800,
@@ -119,41 +108,45 @@ $(function () {
     arrows: false,
   })
 
-
   //===== Back to top
 
   // Show or hide the sticky footer button
-  $(window).on('scroll', function (event) {
+  $(window).on("scroll", function () {
     if ($(this).scrollTop() > 600) {
-      $('.back-to-top').fadeIn(200)
+      $(".back-to-top").fadeIn(200)
     } else {
-      $('.back-to-top').fadeOut(200)
+      $(".back-to-top").fadeOut(200)
     }
   })
 
   //Animate the scroll to yop
-  $('.back-to-top').on('click', function (event) {
+  $(".back-to-top").on("click", function (event) {
     event.preventDefault()
 
-    $('html, body').animate({
-      scrollTop: 0,
-    }, 1500)
+    $("html, body").animate(
+      {
+        scrollTop: 0,
+      },
+      1500,
+    )
   })
 
-
-  $('#email-us').on('click', (e) => {
+  $("#email-us").on("click", function () {
     if (gtag) {
-      gtag('event', 'email-submit')
+      gtag("event", "email-submit")
     }
   })
-  $('form').on('submit', (e) => {
+  $("form").on("submit", function (e) {
     e.preventDefault()
+    const formData = new FormData(e.target)
     if (gtag) {
-      gtag('event', e.target.id)
+      gtag("event", e.target.id, {
+        email: formData.get("email"),
+      })
     }
-    postFormDataAsJson({ url: "/contact", formData: new FormData(e.target) }).then(
-      ({ success }) => {
-        $('#contact-success').modal('toggle')
+    postFormDataAsJson({ url: "/contact", formData: formData }).then(
+      function () {
+        $("#contact-success").modal("toggle")
         e.target.reset()
       },
     )
@@ -172,7 +165,7 @@ $(function () {
      * @see https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/fromEntries
      * @see https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON/stringify
      */
-    const plainFormData = Object.fromEntries(formData.entries())
+    const plainFormData = Object.fromEntries(formData.entries());
     const formDataJsonString = JSON.stringify(plainFormData)
 
     const fetchOptions = {
@@ -188,14 +181,14 @@ $(function () {
        */
       headers: {
         "Content-Type": "application/json",
-        "Accept": "application/json",
+        Accept: "application/json",
       },
       /**
        * The body of our POST request is the JSON string that
        * we created above.
        */
       body: formDataJsonString,
-    }
+    };
 
     const response = await fetch(url, fetchOptions)
 
@@ -206,6 +199,4 @@ $(function () {
 
     return response.json()
   }
-
-
-})
+});
