@@ -21,7 +21,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        language: [ 'javascript' ]
+        language: [ "javascript" ]
         # CodeQL supports [ 'cpp', 'csharp', 'go', 'java', 'javascript', 'python' ]
         # Learn more:
         # https://docs.github.com/en/free-pro-team@latest/github/finding-security-vulnerabilities-and-errors-in-your-code/configuring-code-scanning#changing-the-languages-that-are-analyzed
@@ -58,7 +58,6 @@ jobs:
       - name: Perform CodeQL Analysis
         uses: github/codeql-action/analyze@v1
   build-and-test:
-
     runs-on: ubuntu-latest
 
     strategy:
@@ -71,20 +70,24 @@ jobs:
         uses: actions/setup-node@v2
         with:
           node-version: ${{ matrix.node-version }}
-          cache: 'npm'
-      - name: 'Installing node_modules...'
+          cache: "npm"
+      - name: "Installing node_modules..."
         run: npm ci
-      - name: 'Linting...'
+      - name: "Linting..."
         run: npm run lint
-      - name: 'Testing...'
+      - name: "Testing..."
         run: npm run test
 
   automerge:
     if: ${{ github.event_name == 'pull_request' }}
-    needs: [ 'build-and-test', 'Analyze' ]
+    needs: [ "build-and-test", "Analyze" ]
     runs-on: ubuntu-latest
+    permissions:
+      pull-requests: write
+      contents: write
+
     steps:
       - name: automerge
-        uses: fastify/github-action-merge-dependabot@v2.4.0
+        uses: fastify/github-action-merge-dependabot@v3.0.0
         with:
           github-token: "${{ secrets.GITHUB_TOKEN }}"
