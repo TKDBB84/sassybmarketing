@@ -21,12 +21,12 @@ module.exports = async function (fastify, opts) {
 
 
 		try {
-			// await transporter.sendMail({
-			// 	from: email,
-			// 	to: 'hello@savvybmarketing.com',
-			// 	subject: `New Contact From: ${name}`,
-			// 	text: message === '' ? `No Message Provided by ${name} (${email})` : `Message From: ${name} (${email})\n\n${message}`
-			// });
+			await transporter.sendMail({
+				from: email,
+				to: 'hello@savvybmarketing.com',
+				subject: `New Contact From: ${name}`,
+				text: message === '' ? `No Message Provided by ${name} (${email})` : `Message From: ${name} (${email})\n\n${message}`,
+			})
 			reply.send({ success: true })
 		} catch (e) {
 			console.error('error sending email')
