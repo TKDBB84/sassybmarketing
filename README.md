@@ -1,3 +1,7 @@
+# sassybmarketing
+
+Sassy B Marketing Static Site
+
 # Getting Started with Fastify-CLI [Fastify-CLI](https://www.npmjs.com/package/fastify-cli)
 
 This project was bootstrapped with Fastify-CLI.
