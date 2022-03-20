@@ -140,7 +140,7 @@ $(function () {
     e.preventDefault()
     const formData = new FormData(e.target)
     if (gtag) {
-      gtag("event", e.target.id, {
+      gtag("event", e.target.id.toString(), {
         email: formData.get("email"),
       })
     }
