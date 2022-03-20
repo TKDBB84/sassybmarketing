@@ -1,5 +1,5 @@
 {
-  "name": "wiggles",
+  "name": "savvybmarketing",
   "version": "1.0.0",
   "description": "This project was bootstrapped with Fastify-CLI.",
   "main": "app.js",
@@ -7,7 +7,7 @@
     "test": "test"
   },
   "scripts": {
-    "test": "tap \"test/**/*.test.js\"",
+    "test": "jest",
     "start": "fastify start -p 3004 -l info app.js",
     "dev": "fastify start -w -l info -P app.js",
     "lint": "eslint --fix -c .eslintrc.js --ext .js routes plugins test"
@@ -29,10 +29,11 @@
   "devDependencies": {
     "eslint": "^7.32.0",
     "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-jest": "^26.1.2",
     "eslint-plugin-jsdoc": "^38.0.4",
     "eslint-plugin-prefer-arrow": "^1.2.3",
     "eslint-plugin-react": "^7.29.4",
-    "prettier": "^2.6.0",
-    "tap": "^15.1.6"
+    "jest": "^27.5.1",
+    "prettier": "^2.6.0"
   }
 }
