@@ -7,7 +7,7 @@ const path = require('path')
  *
  * @see https://github.com/fastify/fastify-sensible
  */
-module.exports = fp(async function (fastify, opts) {
+module.exports = fp(async (fastify) => {
 	fastify.register(require('fastify-static'), {
 		root: path.join(__dirname, '..', 'static'),
 		prefix: '/', // optional: default '/'

@@ -1,20 +1,20 @@
-'use strict'
+"use strict"
 
 // This file contains code that we reuse
 // between our tests.
 
-const { build: buildApplication } = require('fastify-cli/helper')
-const path = require('path')
-const AppPath = path.join(__dirname, '..', 'app.js')
+const { build: buildApplication } = require("fastify-cli/helper")
+const path = require("path")
+const AppPath = path.join(__dirname, "..", "app.js")
 
 // Fill in this config with all the configurations
 // needed for testing the application
-function config() {
+const config = () => {
 	return {}
 }
 
 // automatically build and tear down our instance
-async function build(t) {
+const build = async (t) => {
 	// you can set all the options supported by the fastify CLI command
 	const argv = [AppPath]
 
