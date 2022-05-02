@@ -25,7 +25,7 @@
     "fastify-static": "^4.7.0",
     "handlebars": "^4.7.7",
     "nodemailer": "^6.7.4",
-    "point-of-view": "^5.2.0"
+    "point-of-view": "^5.2.1"
   },
   "devDependencies": {
     "eslint": "^8.14.0",
